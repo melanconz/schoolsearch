@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import InfoCard from './InfoCard.js';
 import { StyleSheet, css } from 'aphrodite';
 
 const styles = StyleSheet.create({
@@ -11,23 +12,16 @@ class CollegeDetailHeader extends Component {
   constructor(props) {
       super(props)
       this.state = {
+        schoolInfoObject: [],
         schoolName: '',
-        schoolRul: '',
-        levelOfInstitution: ''
+        schoolUrl: ''
       }
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log(nextProps)
-    var levelOfInstitutionObject = {
-      1: '4-year',
-      2: '2-year',
-      3: 'Less than 2-year'
-    }
       this.setState({schoolName: nextProps.schoolInfo['school.name']});
       this.setState({schoolUrl: nextProps.schoolInfo['school.school_url']});
-      this.setState({levelOfInstitution: levelOfInstitutionObject[nextProps.schoolInfo['school.institutional_characteristics.level']]});
-
+      this.setState({schoolInfoObject: nextProps.schoolInfo})
 
   }
 
@@ -40,6 +34,7 @@ class CollegeDetailHeader extends Component {
                 <h3>Level of Institution: {this.state.levelOfInstitution}</h3>
               </div>
               <div>
+                <InfoCard schoolInfo={this.state.schoolInfoObject}/>
               </div>
             </div>
         );

@@ -25,7 +25,7 @@ class CollegeDetail extends Component {
 
     componentDidMount() {
       var schoolId = this.props.match.params.schoolId;
-        fetch('https://api.data.gov/ed/collegescorecard/v1/schools.json?api_key=IU6Kpjyt8r8pjIp4CD4Vq6DaW9NmjLlx0TTlXk71&fields=id,school.name,school.ownership,school.under_investigation,school.school_url,school.state,school.locale,school.carnegie_basic,school.institutional_characteristics.level&id=' + schoolId)
+        fetch('https://api.data.gov/ed/collegescorecard/v1/schools.json?api_key=IU6Kpjyt8r8pjIp4CD4Vq6DaW9NmjLlx0TTlXk71&fields=id,school.name,school.ownership,school.under_investigation,school.school_url,school.state,school.city,school.locale,school.carnegie_basic,school.institutional_characteristics.level&id=' + schoolId)
           .then(
             res => res.json()
           )
