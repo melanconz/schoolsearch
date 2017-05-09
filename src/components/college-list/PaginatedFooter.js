@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {Redirect} from 'react-router';
 import {StyleSheet, css} from 'aphrodite';
 
 const styles = StyleSheet.create({
@@ -12,6 +13,7 @@ const styles = StyleSheet.create({
 
     },
     footerContent: {
+      cursor: 'pointer',
         margin: '2px',
         textDecoration: 'none',
         color: 'white'
@@ -30,8 +32,34 @@ class PaginatedFooter extends Component {
         this.state = {
             footerPagination: [],
             previousPage: 0,
-            nextPage: 0
+            nextPage: 0,
+            redirectPrevious: false,
+            redirectNext: false,
+            redirectToPage: false,
+            toPageUrl: ''
         }
+        this.handlePrevious = this.handlePrevious.bind(this)
+        this.handleNext = this.handleNext.bind(this)
+        this.handlePageSelection = this.handlePageSelection.bind(this)
+    }
+
+    handlePrevious() {
+        this.setState({redirectPrevious: true});
+        location.reload();
+    }
+
+    handleNext() {
+        this.setState({redirectNext: true});
+        location.reload();
+    }
+    handlePageSelection(e) {
+      console.log(e.target.id);
+      var pageUrl = `/colleges/${this.props.params.stateName}/page=${e.target.id}`
+        this.setState({redirectToPage: true});
+        this.setState({
+          toPageUrl: pageUrl
+        })
+        location.reload();
     }
 
     componentWillReceiveProps(nextProps) {
@@ -56,11 +84,40 @@ class PaginatedFooter extends Component {
         var url = `/colleges/${this.props.params.stateName}`
         var previousUrl = url + `/page=${this.state.previousPage}`
         var nextUrl = url + `/page=${this.state.nextPage}`
+        const previousButtonNode = () => {
+            if (this.state.previousPage >= 0) {
+                return (
+                  <a onClick={this.handlePrevious} className={css(styles.footerContent)}>
+                      &larr;
+                  </a>
+                )
+            } else {
+                return (
+                  <a>
+
+                  </a>
+                )
+            }
+        }
+        const nextButtonNode = () => {
+            if (this.state.nextPage < this.state.footerPagination.length) {
+                return (
+                  <a onClick={this.handleNext} className={css(styles.footerContent)}>
+                      &rarr;
+                  </a>
+                )
+            } else {
+                return (
+                  <a>
+
+                  </a>
+                )
+            }
+        }
         const footerPaginationNode = this.state.footerPagination.map((page) => {
-            var pageUrl = `/colleges/${this.props.params.stateName}/page=${ (page.page - 1)}`
             if (Number(this.pageNumber) !== Number(page.page) - 1) {
                 return (
-                    <a href={pageUrl} className={css(styles.footerContent)} key={page.page}>
+                    <a className={css(styles.footerContent)} onClick={this.handlePageSelection} id={page.page - 1} key={page.page}>
                         {page.page}
                     </a>
                 )
@@ -72,17 +129,26 @@ class PaginatedFooter extends Component {
                 )
             }
         });
+        if (this.state.redirectPrevious) {
+            return <Redirect to={previousUrl}  />;
+        }
+        if (this.state.redirectNext) {
+            return <Redirect to={nextUrl} />;
+        }
+        if (this.state.redirectToPage) {
+            return <Redirect to={this.state.toPageUrl} />;
+        }
         return (
             <div className={css(styles.filterFooter)}>
-                <a href={previousUrl} className={css(styles.footerContent)}>
-                    &larr;
-                </a>
+              <span>
+                  {previousButtonNode()}
+              </span>
                 <span>
                     {footerPaginationNode}
                 </span>
-                <a href={nextUrl} className={css(styles.footerContent)}>
-                    &rarr;
-                </a>
+                <span>
+                    {nextButtonNode()}
+                </span>
             </div>
         );
     }

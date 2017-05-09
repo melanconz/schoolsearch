@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Redirect} from 'react-router'
+import {Redirect} from 'react-router';
 import {StyleSheet, css} from 'aphrodite';
 
 const styles = StyleSheet.create({
@@ -48,7 +48,6 @@ class ListRow extends Component {
         const {redirect} = this.state;
         var school = this.props.name;
         var ownership = ownershipObject[this.props.ownership];
-        console.log(ownership)
         var investigation = this.props.investigation;
         if (investigation === 0) {
             investigation = '❕'
