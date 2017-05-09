@@ -1,0 +1,28 @@
+body {
+  margin: 0;
+  padding: 0;
+
+}
+
+h1 {
+  text-align: center;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    table-layout: fixed;
+    width: 100%;
+}
+
+th {
+  padding: 5px;
+}
+
+select {
+  background-color: #eeeeee;
+  height: 22px;
+  width: 25vw;
+  padding: 2px;
+  margin: 4px;
+}
