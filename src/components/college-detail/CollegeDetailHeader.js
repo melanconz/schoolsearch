@@ -31,7 +31,6 @@ class CollegeDetailHeader extends Component {
               <div>
                 <h1 className={css(styles.collegeDetailTitle)}>{this.state.schoolName}</h1>
                 <a href={'https://' + this.state.schoolUrl}>{this.state.schoolUrl}</a>
-                <h3>Level of Institution: {this.state.levelOfInstitution}</h3>
               </div>
               <div>
                 <InfoCard schoolInfo={this.state.schoolInfoObject}/>
