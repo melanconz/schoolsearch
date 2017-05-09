@@ -32,11 +32,7 @@ class PaginatedFooter extends Component {
         this.state = {
             footerPagination: [],
             previousPage: 0,
-            nextPage: 0,
-            redirectPrevious: false,
-            redirectNext: false,
-            redirectToPage: false,
-            toPageUrl: ''
+            nextPage: 0
         }
         this.handlePrevious = this.handlePrevious.bind(this)
         this.handleNext = this.handleNext.bind(this)
@@ -44,21 +40,22 @@ class PaginatedFooter extends Component {
     }
 
     handlePrevious() {
-        this.setState({redirectPrevious: true});
-        location.reload();
+      var url = `/colleges/${this.props.params.stateName}`
+      var previousUrl = url + `/page=${this.state.previousPage}`
+      this.props.history.push(previousUrl);
+      location.reload();
     }
 
     handleNext() {
-        this.setState({redirectNext: true});
-        location.reload();
+      var url = `/colleges/${this.props.params.stateName}`
+      var nextUrl = url + `/page=${this.state.nextPage}`
+      this.props.history.push(nextUrl);
+      location.reload();
     }
     handlePageSelection(e) {
-      console.log(e.target.id);
+      console.log(this.props);
       var pageUrl = `/colleges/${this.props.params.stateName}/page=${e.target.id}`
-        this.setState({redirectToPage: true});
-        this.setState({
-          toPageUrl: pageUrl
-        })
+        this.props.history.push(pageUrl);
         location.reload();
     }
 
@@ -129,15 +126,6 @@ class PaginatedFooter extends Component {
                 )
             }
         });
-        if (this.state.redirectPrevious) {
-            return <Redirect to={previousUrl}  />;
-        }
-        if (this.state.redirectNext) {
-            return <Redirect to={nextUrl} />;
-        }
-        if (this.state.redirectToPage) {
-            return <Redirect to={this.state.toPageUrl} />;
-        }
         return (
             <div className={css(styles.filterFooter)}>
               <span>

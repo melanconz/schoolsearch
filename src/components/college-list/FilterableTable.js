@@ -49,7 +49,7 @@ class FilterableTable extends Component {
                     <TableList schools={this.props.schools} filterText={this.state.filterText} option={this.state.option}/>
                 </div>
                 <div className={css(styles.filterFooter)}>
-                    <PaginatedFooter schools={this.props.schools} params={this.props.params} pages={this.state.pages} />
+                    <PaginatedFooter history={this.props.history} schools={this.props.schools} params={this.props.params} pages={this.state.pages} />
                 </div>
             </div>
         );

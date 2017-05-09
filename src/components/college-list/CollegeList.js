@@ -24,9 +24,10 @@ class CollegeList extends Component {
     }
 
     render() {
+      console.log(this.props.history);
         return (
             <div>
-                <FilterableTable metaData={this.state.metaData} schools={this.state.schools} params={this.props.match.params} />
+                <FilterableTable history={this.props.history} metaData={this.state.metaData} schools={this.state.schools} params={this.props.match.params} />
             </div>
         );
     }
