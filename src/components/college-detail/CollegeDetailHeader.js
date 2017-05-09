@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import InfoCard from './InfoCard.js';
+import GraphCard from './GraphCard.js';
 import { StyleSheet, css } from 'aphrodite';
 
 const styles = StyleSheet.create({
@@ -34,6 +35,9 @@ class CollegeDetailHeader extends Component {
               </div>
               <div>
                 <InfoCard schoolInfo={this.state.schoolInfoObject}/>
+              </div>
+              <div>
+                {/* <GraphCard schoolInfo={this.state.schoolInfoObject}/> */}
               </div>
             </div>
         );

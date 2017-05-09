@@ -108,10 +108,10 @@ class InfoCard extends Component {
         this.setState({location: nextProps.schoolInfo['school.city'] + ', ' + nextProps.schoolInfo['school.state']});
         this.setState({locale: localeObject[nextProps.schoolInfo['school.locale']]})
         this.setState({
-            admissionRate: (nextProps.schoolInfo['2014.admissions.admission_rate.overall'] * 100) + '%'
+            admissionRate: Math.round(nextProps.schoolInfo['2014.admissions.admission_rate.overall'] * 100) + '%'
         });
         this.setState({
-            carnegieBasic: carnegieBasicObject[nextProps.schoolInfo['school.carnegie_basic']]
+            carnegieBasic: (nextProps.schoolInfo['school.carnegie_basic'] !== -2 ? carnegieBasicObject[nextProps.schoolInfo['school.carnegie_basic']] : 'N/A')
         });
     }
     render() {
