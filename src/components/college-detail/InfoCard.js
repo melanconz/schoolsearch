@@ -4,7 +4,6 @@ import {StyleSheet, css} from 'aphrodite';
 const styles = StyleSheet.create({
     card: {
         backgroundColor: 'white',
-        height: '50vh',
         width: '70%',
         borderStyle: 'solid',
         borderRadius: '5px',
@@ -44,7 +43,7 @@ class InfoCard extends Component {
         super(props)
         this.state = {
             location: '',
-            locale: '',
+            admissionRate: '',
             carnegieBasic: '',
             levelOfInstitution: ''
         }
@@ -109,13 +108,14 @@ class InfoCard extends Component {
         this.setState({location: nextProps.schoolInfo['school.city'] + ', ' + nextProps.schoolInfo['school.state']});
         this.setState({locale: localeObject[nextProps.schoolInfo['school.locale']]})
         this.setState({
-            levelOfInstitution: levelOfInstitutionObject[nextProps.schoolInfo['school.institutional_characteristics.level']]
+            admissionRate: (nextProps.schoolInfo['2014.admissions.admission_rate.overall'] * 100) + '%'
         });
         this.setState({
             carnegieBasic: carnegieBasicObject[nextProps.schoolInfo['school.carnegie_basic']]
         });
     }
     render() {
+      console.log(this.props.schoolInfo)
         return (
             <div className={css(styles.card)}>
               <div  className={css(styles.cardHeader)}>
@@ -160,23 +160,6 @@ class InfoCard extends Component {
                         <tr>
                             <td width="250px">
                                 <h3 className={css(styles.titles)}>
-                                    Level Of Institution
-                                </h3>
-                            </td>
-                            <td>
-                                <h3 className={css(styles.arrow)}>
-                                    →
-                                </h3>
-                            </td>
-                            <td width="500px">
-                                <h3 className={css(styles.data)}>
-                                    {this.state.levelOfInstitution}
-                                </h3>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td width="250px">
-                                <h3 className={css(styles.titles)}>
                                     Carnegie Classification
                                 </h3>
                             </td>
@@ -188,6 +171,23 @@ class InfoCard extends Component {
                             <td width="500px">
                                 <h3 className={css(styles.data)}>
                                     {this.state.carnegieBasic}
+                                </h3>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="250px">
+                                <h3 className={css(styles.titles)}>
+                                    Admission Rate
+                                </h3>
+                            </td>
+                            <td>
+                                <h3 className={css(styles.arrow)}>
+                                    →
+                                </h3>
+                            </td>
+                            <td width="500px">
+                                <h3 className={css(styles.data)}>
+                                    {this.state.admissionRate}
                                 </h3>
                             </td>
                         </tr>
