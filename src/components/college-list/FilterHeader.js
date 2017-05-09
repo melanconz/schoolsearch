@@ -20,6 +20,7 @@ const styles = StyleSheet.create({
     display: 'flex'
   },
   homeButton: {
+    color: 'black',
     borderRadius: '4px',
     width: '75px',
     height: '27px',
