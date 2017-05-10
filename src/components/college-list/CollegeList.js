@@ -11,7 +11,7 @@ class CollegeList extends Component {
     }
 
     componentDidMount() {
-        fetch('https://api.data.gov/ed/collegescorecard/v1/schools.json?api_key=IU6Kpjyt8r8pjIp4CD4Vq6DaW9NmjLlx0TTlXk71&fields=id,school.name,school.under_investigation,school.ownership,school.state&_per_page=25&school.state=' + this.props.match.params.stateName + '&_' + this.props.match.params.page + '&_sort=school.name')
+        fetch('https://api.data.gov/ed/collegescorecard/v1/schools.json?api_key=IU6Kpjyt8r8pjIp4CD4Vq6DaW9NmjLlx0TTlXk71&fields=id,school.name,school.state_fips,school.under_investigation,school.ownership,school.state&_per_page=25&school.state=' + this.props.match.params.stateName + '&_' + this.props.match.params.page + '&_sort=school.name')
           .then(
             res => res.json()
           )

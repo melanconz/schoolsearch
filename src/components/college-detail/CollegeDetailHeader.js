@@ -6,6 +6,10 @@ import { StyleSheet, css } from 'aphrodite';
 const styles = StyleSheet.create({
     collegeDetailTitle: {
       marginBottom: '0'
+    },
+    link: {
+      color: 'white',
+      textDecoration: 'none'
     }
 });
 
@@ -31,7 +35,7 @@ class CollegeDetailHeader extends Component {
             <div>
               <div>
                 <h1 className={css(styles.collegeDetailTitle)}>{this.state.schoolName}</h1>
-                <a href={'https://' + this.state.schoolUrl}>{this.state.schoolUrl}</a>
+              <a href={'https://' + this.state.schoolUrl} className={css(styles.link)}>{this.state.schoolUrl}</a>
               </div>
               <div>
                 <InfoCard schoolInfo={this.state.schoolInfoObject}/>

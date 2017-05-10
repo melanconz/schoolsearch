@@ -12,7 +12,8 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between'
   },
   filterInput: {
-    width: '40%',
+    fontFamily: "'Josefin Slab', serif",
+    width: '25%',
     height: '18px',
     border: '0',
     padding: '3px',
@@ -20,6 +21,9 @@ const styles = StyleSheet.create({
     display: 'flex'
   },
   homeButton: {
+    fontWeight: 'bolder',
+    fontFamily: "'Josefin Slab', serif",
+    width: '30%',
     color: 'black',
     borderRadius: '4px',
     width: '75px',
@@ -39,6 +43,9 @@ const styles = StyleSheet.create({
 class FilterHeader extends Component {
   constructor(props){
     super(props);
+    this.state = {
+        stateName: ''
+    }
     this.handleFilterTextInputChange = this.handleFilterTextInputChange.bind(this);
     this.handleFilterOptionInputChange = this.handleFilterOptionInputChange.bind(this);
   }
@@ -49,7 +56,6 @@ class FilterHeader extends Component {
 
   handleFilterOptionInputChange(e) {
       this.props.onFilterDropDown(e.target.value);
-      // this.props.router.push('/colleges/' + e.target.value);
   }
 
     render() {

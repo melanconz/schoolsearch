@@ -20,6 +20,7 @@ class TableList extends Component {
         }
         rows.push(
           <ListRow
+            history={this.props.history}
             even={even}
             state={school['school.state']}
             name={school['school.name']}
