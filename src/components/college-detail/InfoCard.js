@@ -21,13 +21,15 @@ const styles = StyleSheet.create({
         color: 'black'
     },
     tableRows: {
-        padding: '0'
+      '@media (max-width: 600px)': {
+        display: '-webkit-box',
+      }    
     },
     titles: {
         textAlign: 'left',
         fontWeight: 'bolder',
         paddingRight: '5px',
-        paddingLeft: '20px'
+        paddingLeft: '20px',
     },
     arrow: {
         textAlign: 'left'
@@ -123,7 +125,7 @@ class InfoCard extends Component {
               </div>
                 <table className={css(styles.cardText)}>
                     <tbody>
-                        <tr>
+                        <tr className={css(styles.tableRows)}>
                             <td width="25%">
                                 <h3 className={css(styles.titles)}>
                                     State
@@ -140,7 +142,7 @@ class InfoCard extends Component {
                                 </h3>
                             </td>
                         </tr>
-                        <tr>
+                        <tr className={css(styles.tableRows)}>
                             <td >
                                 <h3 className={css(styles.titles)}>
                                     Locale
@@ -157,7 +159,7 @@ class InfoCard extends Component {
                                 </h3>
                             </td>
                         </tr>
-                        <tr>
+                        <tr className={css(styles.tableRows)}>
                             <td width="250px">
                                 <h3 className={css(styles.titles)}>
                                     Carnegie Classification
@@ -174,7 +176,7 @@ class InfoCard extends Component {
                                 </h3>
                             </td>
                         </tr>
-                        <tr>
+                        <tr className={css(styles.tableRows)}>
                             <td width="250px">
                                 <h3 className={css(styles.titles)}>
                                     Admission Rate
